@@ -1,4 +1,8 @@
-﻿<div href="#" class="navbar-text me-2">
+﻿@using Web_053503_Rusakovich.Entities
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+<div href="#" class="navbar-text me-2">
     00,0 руб <i class="fas fa-shopping-cart nav-color"></i>
 </div>
 
@@ -7,8 +11,9 @@
         <img src="images/i.jpg" width="30" alt="User" class="rounded" />
     </a>
     <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="navbarDropdownMenuLink">
+        <a>@User.Identity.Name</a>
         <li><a class="dropdown-item" asp-controller="Cart" asp-action="Index">Корзина</a></li>
         <li><a class="dropdown-item" asp-controller="Product" asp-action="UserProducts">Мои товары</a></li>
-        <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Выйти</a></li>
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnurl="@ViewContext.HttpContext.Request.Path"><input type="submit" value="Logout" class="dropdown-item"></form>
     </ul>
-</div>
+</div>  

@@ -44,7 +44,11 @@ namespace Web_053503_Rusakovich
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Identity/Pages/Account/Login";
+                options.LogoutPath = $"/Identity/Pages/Account/Logout";
+            });
             services.AddAuthorization();
             services.AddControllersWithViews();
             services.AddRazorPages();
