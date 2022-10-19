@@ -1,0 +1,14 @@
+﻿<div href="#" class="navbar-text me-2">
+    00,0 руб <i class="fas fa-shopping-cart nav-color"></i>
+</div>
+
+<div class="dropdown me-1 nav-color">
+    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="images/i.jpg" width="30" alt="User" class="rounded" />
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="navbarDropdownMenuLink">
+        <li><a class="dropdown-item" asp-controller="Cart" asp-action="Index">Корзина</a></li>
+        <li><a class="dropdown-item" asp-controller="Product" asp-action="UserProducts">Мои товары</a></li>
+        <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">Выйти</a></li>
+    </ul>
+</div>
