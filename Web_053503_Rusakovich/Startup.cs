@@ -55,7 +55,7 @@ namespace Web_053503_Rusakovich
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -91,7 +91,7 @@ namespace Web_053503_Rusakovich
             {
                 var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                 var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-                await DbInitializer.InitializeAsync(userManager, rolesManager);
+                DbInitializer.InitializeAsync(dbContext, userManager, rolesManager).Wait();
             }
             catch (Exception ex)
             {
