@@ -5,6 +5,7 @@ using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Web_053503_Rusakovich.Models;
 using Web_053503_Rusakovich.Data;
 using Web_053503_Rusakovich.Entities;
 
@@ -15,12 +16,14 @@ namespace Web_053503_Rusakovich.Controllers
         List<Entities.Product> ListProducts = new();
         List<Entities.ProductType> ListProductsType = new();
         ApplicationDbContext _context;
+        int _pageSize;
 
         public Product(ApplicationDbContext context)
         {
             _context = context;
             ListProducts = GetProducts();
             ListProductsType = GetTypes();
+            _pageSize = 3;
         }
 
         public List<Entities.Product> GetProducts()
@@ -33,10 +36,15 @@ namespace Web_053503_Rusakovich.Controllers
             return _context.Types.ToList();
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int? group, int page)
         {
+            var productsFiltered = _context.Products.Where(d => !group.HasValue || d.TypeId == group.Value);
+            ViewData["Types"] = _context.Types;
+            ViewData["CurrentType"] = group ?? 0;
+            page = page<=0 ? 1 : page;
             //ViewData["ListProducts"] = new SelectList(ListProducts, "Name", "Description", "Price", "Image");
-            return View(ListProducts);
+            var model = ListViewModel<Entities.Product>.GetModel(productsFiltered, page, _pageSize);
+            return View(model);
         }
 
     }

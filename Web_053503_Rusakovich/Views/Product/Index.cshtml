@@ -1,59 +1,46 @@
-﻿@model IEnumerable<Web_053503_Rusakovich.Entities.Product>
+﻿@model ListViewModel<Product>
 
 @{
-    ViewData["Title"] = "Products";
+    ViewData["Title"] = "Каталог";
+    var categories = ViewData["Types"] as IEnumerable<ProductType>;
+    int currentGroup = (int)ViewData["CurrentType"];
+    var text = currentGroup != 0
+        ? categories
+            .FirstOrDefault(g => g.TypeId == currentGroup)?
+            .Name
+        : "Все";
 }
 
-<h1>Products</h1>
+<div class="row">
+    <div class="col-2">
+        <div class="dropdown mt-2">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Product Type
+            </button>
+            <div class="dropdown-menu"
+                 aria-labelledby="dropdownMenuLink">
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TypeId)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TypeId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                <a class="dropdown-item"
+                   asp-action="Index"
+                   asp-controller="Product">Все</a>
+                @foreach (var item in categories)
+                {
+                    <a class="dropdown-item"
+                   asp-action="Index"
+                   asp-controller="Product"
+                   asp-route-group="@item.TypeId"
+                   asp-route-pageN="1">@item.Name</a>
+                }
+            </div>
+        </div>
+    </div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <partial name="_ListPartial" model="@Model"/>
+    <a asp-action="Index"
+        asp-controller="Product"
+        asp-route-page=@Model.currentPage>
+        @Model.currentPage
+    </a>
+</div>
+</div>
