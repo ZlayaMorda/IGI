@@ -36,11 +36,12 @@ namespace Web_053503_Rusakovich.Controllers
             return _context.Types.ToList();
         }
 
-        public ActionResult Index(int? group, int page)
+
+        public ActionResult Index(int? type, int page)
         {
-            var productsFiltered = _context.Products.Where(d => !group.HasValue || d.TypeId == group.Value);
+            var productsFiltered = _context.Products.Where(d => !type.HasValue || d.TypeId == type.Value);
             ViewData["Types"] = _context.Types;
-            ViewData["CurrentType"] = group ?? 0;
+            ViewData["CurrentType"] = type ?? 0;
             page = page<=0 ? 1 : page;
             //ViewData["ListProducts"] = new SelectList(ListProducts, "Name", "Description", "Price", "Image");
             var model = ListViewModel<Entities.Product>.GetModel(productsFiltered, page, _pageSize);

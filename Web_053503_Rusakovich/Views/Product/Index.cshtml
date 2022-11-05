@@ -3,10 +3,10 @@
 @{
     ViewData["Title"] = "Каталог";
     var categories = ViewData["Types"] as IEnumerable<ProductType>;
-    int currentGroup = (int)ViewData["CurrentType"];
-    var text = currentGroup != 0
+    int currentType = (int)ViewData["CurrentType"];
+    var text = currentType != 0
         ? categories
-            .FirstOrDefault(g => g.TypeId == currentGroup)?
+            .FirstOrDefault(g => g.TypeId == currentType)?
             .Name
         : "Все";
 }
@@ -28,8 +28,8 @@
                     <a class="dropdown-item"
                    asp-action="Index"
                    asp-controller="Product"
-                   asp-route-group="@item.TypeId"
-                   asp-route-pageN="1">@item.Name</a>
+                   asp-route-type="@item.TypeId"
+                   asp-route-page="1">@item.Name</a>
                 }
             </div>
         </div>
@@ -37,10 +37,11 @@
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
     <partial name="_ListPartial" model="@Model"/>
-    <a asp-action="Index"
-        asp-controller="Product"
-        asp-route-page=@Model.currentPage>
-        @Model.currentPage
-    </a>
+    <pager page-current="@Model.currentPage"
+            page-total="@Model.totalPages"
+            action="Index"
+            controller="Product"
+            type-id="@currentType">
+    </pager>
 </div>
 </div>

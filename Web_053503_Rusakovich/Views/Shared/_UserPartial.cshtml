@@ -10,7 +10,10 @@
 
     <div class="dropdown me-1 nav-color">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="@Url.Action("GetImage", "Image")" width="30" alt="User" class="rounded" />
+            <img img-action="GetImage"
+             img-controller="Image"
+             width="30" alt="User"
+             class="rounded bg-light" />
         </a>
         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end" aria-labelledby="navbarDropdownMenuLink">
             <a>@User.Identity.Name</a>
