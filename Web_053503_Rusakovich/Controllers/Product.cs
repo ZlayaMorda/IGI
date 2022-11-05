@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Web_053503_Rusakovich.Models;
 using Web_053503_Rusakovich.Data;
-using Web_053503_Rusakovich.Entities;
+using Web_053503_Rusakovich.Extentions;
 
 namespace Web_053503_Rusakovich.Controllers
 {
@@ -36,7 +32,8 @@ namespace Web_053503_Rusakovich.Controllers
             return _context.Types.ToList();
         }
 
-
+        [Route("Catalog")]
+        [Route("Catalog/Page_{page}")]
         public ActionResult Index(int? type, int page)
         {
             var productsFiltered = _context.Products.Where(d => !type.HasValue || d.TypeId == type.Value);
@@ -45,7 +42,10 @@ namespace Web_053503_Rusakovich.Controllers
             page = page<=0 ? 1 : page;
             //ViewData["ListProducts"] = new SelectList(ListProducts, "Name", "Description", "Price", "Image");
             var model = ListViewModel<Entities.Product>.GetModel(productsFiltered, page, _pageSize);
-            return View(model);
+            if (Request.IsAjaxRequest())
+                return PartialView("_listpartial", model);
+            else
+                return View(model);
         }
 
     }
