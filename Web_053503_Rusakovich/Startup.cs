@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web_053503_Rusakovich.Data;
 using Web_053503_Rusakovich.Entities;
+using Web_053503_Rusakovich.Extensions;
 using Web_053503_Rusakovich.Models;
 using Web_053503_Rusakovich.Services;
 
@@ -89,6 +90,13 @@ namespace Web_053503_Rusakovich
             var services = app.ApplicationServices
                 .CreateScope()
                 .ServiceProvider;
+
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddLogging();
+            var loger = services.GetRequiredService<ILoggerFactory>();
+            loger.AddFile("Logs/log-{Date}.txt");
+
+            app.UseFileLogging();
 
             app.UseEndpoints(endpoints =>
             {
