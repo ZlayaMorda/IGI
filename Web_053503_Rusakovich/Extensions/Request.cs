@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Web_053503_Rusakovich.Extentions
+namespace Web_053503_Rusakovich.Extensions
 {
     public static class Request
     {

@@ -14,6 +14,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web_053503_Rusakovich.Data;
 using Web_053503_Rusakovich.Entities;
+using Web_053503_Rusakovich.Models;
+using Web_053503_Rusakovich.Services;
 
 namespace Web_053503_Rusakovich
 {
@@ -52,6 +54,13 @@ namespace Web_053503_Rusakovich
             services.AddAuthorization();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddDistributedMemoryCache();
+            services.AddSession(opt =>
+            {
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.IsEssential = true;
+            });
+            services.AddScoped(sp => CartService.GetCart(sp));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +79,7 @@ namespace Web_053503_Rusakovich
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

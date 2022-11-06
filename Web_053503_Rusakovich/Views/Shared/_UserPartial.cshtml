@@ -4,10 +4,10 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div href="#" class="navbar-text me-2">
+@*    <div href="#" class="navbar-text me-2">
         00,0 руб <i class="fas fa-shopping-cart nav-color"></i>
-    </div>
-
+    </div>*@
+    @await Component.InvokeAsync("Cart")
     <div class="dropdown me-1 nav-color">
         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <img img-action="GetImage"

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Web_053503_Rusakovich.Models;
 using Web_053503_Rusakovich.Data;
-using Web_053503_Rusakovich.Extentions;
+using Web_053503_Rusakovich.Extensions;
 
 namespace Web_053503_Rusakovich.Controllers
 {
