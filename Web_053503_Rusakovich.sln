@@ -5,11 +5,11 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_053503_Rusakovich", "Web_053503_Rusakovich\Web_053503_Rusakovich.csproj", "{A80E2A82-1889-4AFE-8294-2F5541CD24F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB_053503_Rusakovich.Blazor.Server", "WEB_053503_Rusakovich.Blazor\Server\WEB_053503_Rusakovich.Blazor.Server.csproj", "{9E984B7D-2B53-48BF-A0B3-86A1BECAC640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEB_053503_Rusakovich.Blazor.Server", "WEB_053503_Rusakovich.Blazor\Server\WEB_053503_Rusakovich.Blazor.Server.csproj", "{9E984B7D-2B53-48BF-A0B3-86A1BECAC640}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB_053503_Rusakovich.Blazor.Client", "WEB_053503_Rusakovich.Blazor\Client\WEB_053503_Rusakovich.Blazor.Client.csproj", "{2137D268-1B6C-4CD6-A361-6F8AE66EB2FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEB_053503_Rusakovich.Blazor.Client", "WEB_053503_Rusakovich.Blazor\Client\WEB_053503_Rusakovich.Blazor.Client.csproj", "{2137D268-1B6C-4CD6-A361-6F8AE66EB2FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB_053503_Rusakovich.Blazor.Shared", "WEB_053503_Rusakovich.Blazor\Shared\WEB_053503_Rusakovich.Blazor.Shared.csproj", "{5D7AEA4E-A0C8-4689-9FED-461F3969CFF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WEB_053503_Rusakovich.Blazor.Shared", "WEB_053503_Rusakovich.Blazor\Shared\WEB_053503_Rusakovich.Blazor.Shared.csproj", "{5D7AEA4E-A0C8-4689-9FED-461F3969CFF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

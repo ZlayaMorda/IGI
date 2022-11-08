@@ -1,0 +1,26 @@
+﻿@using WEB_053503_Rusakovich.Blazor.Client.Models
+@if (Product != null)
+{
+    <img src="@imageSrc" class="img-thumbnail" width="150" />
+    <div>
+        <p>@Product.Name - @Product.Description</p>
+        <div>
+            @Product.Price
+            белочек
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public DetailsViewModel Product { get; set; }
+    [Parameter]
+    public EventCallback<DetailsViewModel> ProductChanged { get; set; }
+    string imageSrc
+    {
+        get
+        {
+            return $"images/{Product.ImageName}";
+        }
+    }
+}

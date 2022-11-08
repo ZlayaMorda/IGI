@@ -6,9 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Web_053503_Rusakovich\Web_053503_Rusakovich.csproj" />
     <ProjectReference Include="..\Client\WEB_053503_Rusakovich.Blazor.Client.csproj" />
     <ProjectReference Include="..\Shared\WEB_053503_Rusakovich.Blazor.Shared.csproj" />
   </ItemGroup>
